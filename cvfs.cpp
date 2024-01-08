@@ -293,71 +293,39 @@ int rm_File(char * name)
 }
 int ReadFile(int fd,char *arr,int isize)
 {
-    // int read_size=0;
-    // if(UFDTArr[fd].ptrfiletable==NULL)
-    // return -1;
+    int read_size=0;
+    if(UFDTArr[fd].ptrfiletable==NULL)
+    return -1;
 
-    // if(UFDTArr[fd].ptrfiletable->mode !=READ && UFDTArr[fd].ptrfiletable->mode!=READ+WRITE)
-    // return -2;
+    if(UFDTArr[fd].ptrfiletable->mode !=READ && UFDTArr[fd].ptrfiletable->mode!=READ+WRITE)
+    return -2;
 
-    // if(UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ&&UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ+WRITE)
-    // return -2;
+    if(UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ&&UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ+WRITE)
+    return -2;
 
-    // if(UFDTArr[fd].ptrfiletable->readoffset==UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)
-    // return -3;
+    if(UFDTArr[fd].ptrfiletable->readoffset==UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)
+    return -3;
 
-    // if(UFDTArr[fd].ptrfiletable->ptrinode->Filetype !=REGULAR)
-    // return -4;
+    if(UFDTArr[fd].ptrfiletable->ptrinode->Filetype !=REGULAR)
+    return -4;
 
-    // read_size=(UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)-(UFDTArr[fd].ptrfiletable->readoffset);
-    // if(read_size <isize)
-    // {
-    //     strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),read_size);
-    //     UFDTArr[fd].ptrfiletable->readoffset=UFDTArr[fd].ptrfiletable->readoffset+read_size;
-
-    // }
-    // else
-    // {
-    //     strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),isize);
-    //     (UFDTArr[fd].ptrfiletable->readoffset)=(UFDTArr[fd].ptrfiletable->readoffset)+isize;
-
-
-    // }
-    // return isize;
-
-    int read_size = 0;
-
-    if (UFDTArr[fd].ptrfiletable == NULL)
-        return -1;
-
-    if (UFDTArr[fd].ptrfiletable->mode != READ && UFDTArr[fd].ptrfiletable->mode != READ + WRITE)
-        return -2;
-
-    if (UFDTArr[fd].ptrfiletable->ptrinode->permission != READ && UFDTArr[fd].ptrfiletable->ptrinode->permission != READ + WRITE)
-        return -3; // Return -3 for permission check failure
-
-    if (UFDTArr[fd].ptrfiletable->readoffset == UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)
-        return 0; // Return 0 to indicate end of file
-
-    if (UFDTArr[fd].ptrfiletable->ptrinode->Filetype != REGULAR)
-        return -4;
-
-    read_size = UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize - UFDTArr[fd].ptrfiletable->readoffset;
-
-    if (read_size < isize)
+    read_size=(UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)-(UFDTArr[fd].ptrfiletable->readoffset);
+    if(read_size <isize)
     {
-        strncpy(arr, (UFDTArr[fd].ptrfiletable->ptrinode->Buffer) + (UFDTArr[fd].ptrfiletable->readoffset), read_size);
-        UFDTArr[fd].ptrfiletable->readoffset = UFDTArr[fd].ptrfiletable->readoffset + read_size;
+        strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),read_size);
+        UFDTArr[fd].ptrfiletable->readoffset=UFDTArr[fd].ptrfiletable->readoffset+read_size;
+
     }
     else
     {
-        strncpy(arr, (UFDTArr[fd].ptrfiletable->ptrinode->Buffer) + (UFDTArr[fd].ptrfiletable->readoffset), isize);
-        UFDTArr[fd].ptrfiletable->readoffset = UFDTArr[fd].ptrfiletable->readoffset + isize;
-    }
+        strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),isize);
+        (UFDTArr[fd].ptrfiletable->readoffset)=(UFDTArr[fd].ptrfiletable->readoffset)+isize;
 
+
+    }
     return isize;
 
-    
+
 }
 int WriteFile(int fd ,char *arr,int isize)
 {
