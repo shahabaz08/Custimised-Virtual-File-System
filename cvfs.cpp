@@ -65,83 +65,85 @@ void man(char *name)
 
     if(strcmp(name,"create")==0)
     {
-        printf("Description:Used to create new regular file\n");
-        printf("Usage:create File_name Permission\n");
+        printf(" Description  :Used to create new regular file\n");
+        printf(" Usage        :create File_name Permission\n");
     }
    else if(strcmp(name,"read")==0)
     {
-        printf("Description:Used to read data from regular file\n");
-        printf("Usage:read File_name No_Of_Bites_To_Read\n");
+        printf(" Description:Used to read data from regular file\n");
+        printf(" Usage      :read File_name No_Of_Bites_To_Read\n");
     }
     else if(strcmp(name,"write")==0)
     {
-        printf("Description:Used to write data from regular file\n");
-        printf("Usage:write File_name \n After this enter the data that we want to write\n");
+        printf("  Description : Used to write data from regular file\n");
+        printf("  Usage       : write File_name \n After this enter the data that we want to write\n");
     }
     else if(strcmp(name,"ls")==0)
     {
-        printf("Description:Used to list all the information of files\n");
-        printf("Usage:ls\n");
+        printf("  Description   :  Used to list all the information of files\n");
+        printf("  Usage         :  ls\n");
     }
     else if(strcmp(name,"stat")==0)
     {
-        printf("Description:Used to display information of file\n");
-        printf("Usage:stat_File_Desciptor\n");
+        printf(" Description :  Used to display information of file\n");
+        printf(" Usage       :  stat_File_Desciptor\n");
     }
     else if(strcmp(name,"fstat")==0)
     {
-        printf("Description:Used to display information of file\n");
-        printf("Usage:stat_File_Descriptor\n");
+        printf("  Description : Used to display information of file\n");
+        printf("  Usage       : stat_File_Descriptor\n");
     }
     else if(strcmp(name,"truncate")==0)
     {
-        printf("Description:Used to remove data from file\n");
-        printf("Usage:trucate File_name\n");
+        printf("  Description  :  Used to remove data from file\n");
+        printf("  Usage        :  trucate File_name\n");
     }
     else if(strcmp(name,"open")==0)
     {
-        printf("Description:Used to open existing file\n");
-        printf("Usage:open File_name mode\n");
+        printf("  Description:  Used to open existing file\n");
+        printf("  Usage      :  open File_name mode\n");
     }
     else if(strcmp(name,"close")==0)
     {
-        printf("Description:Used to close opened file\n");
-        printf("Usage:close File_name\n");
+        printf("  Description  :  Used to close opened file\n");
+        printf("  Usage        :  close File_name\n");
     }
     else if(strcmp(name,"closeall")==0)
     {
-        printf("Description:Used to close all opened file \n");
-        printf("Usage:closeall\n");
+        printf("  Description  :  Used to close all opened file \n");
+        printf("  Usage        :  closeall\n");
     }
     else if(strcmp(name,"lseek")==0)
     {
-        printf("Description:Used to change file offset\n");
-        printf("Usage:lseek File_Name ChangeInOffset StartPoint\n");
+        printf("  Description  :  Used to change file offset\n");
+        printf("  Usage        :  lseek File_Name ChangeInOffset StartPoint\n");
     }
     else if(strcmp(name,"rm")==0)
     {
-        printf("Description:Used to delete the file\n");
-        printf("Usage:rm File_Name\n");
+        printf("  Description  :  Used to delete the file\n");
+        printf("  Usage        :  rm File_Name\n");
     }
     else
     {
-        printf("ERROR:No manual entry available");
+        printf("ERROR  :  No manual entry available");
     }
 }
 void DisplayHelp()
 {
-    printf("ls:To list out all the files\n");
-    printf(" clear:to clear console\n");
-    printf(" open:to open the file\n");
-    printf(" close:To close the file\n");
-     printf(" closeall:To close all opened files\n");
-     printf("read:To read the contents from file \n");
-     printf(" write:To write contents from file\n");
-     printf(" exit: To terminate file system\n");
-      printf("stat:To Display information of file \n");
-     printf(" fstat:To display information using name\n");
-     printf(" truncate:To remove all data from file\n");
-     printf(" rm:To delete the file\n");
+    printf("  create  :  To create the File\n");
+    printf("  open    :  To open the file\n");
+    printf("  write   :  To write contents from file\n");
+    printf("  read    :  To read the contents from file \n");
+    printf("  ls      :  To list out all the files\n");
+    printf("  clear   :  To clear console\n");
+    printf("  close   :  To close the file\n");
+    printf("  closeall:  To close all opened files\n");
+    printf("  stat    :  To Display information of file \n");
+    printf("  fstat   :  To display information using name\n");
+    printf("  truncate:  To remove all data from file\n");
+    printf("  rm      :  To delete the file\n");
+    printf("  exit    :  To terminate file system\n\n\n");
+    printf("  man  <system call name>  You will get to know the syntax of command\n\n");
 }
 int GetFDFromName(char *name)
 {
@@ -206,7 +208,8 @@ void CreateDILB()
         }
         i++;
     }
-    printf("DILB created successfully...!!");
+    printf("DILB created successfully...!!\n");
+    printf("type help to know the services\n");
 }
 void InitialiseSuperBlock()
 {
@@ -290,36 +293,68 @@ int rm_File(char * name)
 }
 int ReadFile(int fd,char *arr,int isize)
 {
-    int read_size=0;
-    if(UFDTArr[fd].ptrfiletable==NULL)
-    return -1;
+    // int read_size=0;
+    // if(UFDTArr[fd].ptrfiletable==NULL)
+    // return -1;
 
-    if(UFDTArr[fd].ptrfiletable->mode !=READ && UFDTArr[fd].ptrfiletable->mode!=READ+WRITE)
-    return -2;
+    // if(UFDTArr[fd].ptrfiletable->mode !=READ && UFDTArr[fd].ptrfiletable->mode!=READ+WRITE)
+    // return -2;
 
-    if(UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ&&UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ+WRITE)
-    return -2;
+    // if(UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ&&UFDTArr[fd].ptrfiletable->ptrinode->permission !=READ+WRITE)
+    // return -2;
 
-    if(UFDTArr[fd].ptrfiletable->readoffset==UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)
-    return -3;
+    // if(UFDTArr[fd].ptrfiletable->readoffset==UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)
+    // return -3;
 
-    if(UFDTArr[fd].ptrfiletable->ptrinode->Filetype !=REGULAR)
-    return -4;
+    // if(UFDTArr[fd].ptrfiletable->ptrinode->Filetype !=REGULAR)
+    // return -4;
 
-    read_size=(UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)-(UFDTArr[fd].ptrfiletable->readoffset);
-    if(read_size <isize)
+    // read_size=(UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)-(UFDTArr[fd].ptrfiletable->readoffset);
+    // if(read_size <isize)
+    // {
+    //     strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),read_size);
+    //     UFDTArr[fd].ptrfiletable->readoffset=UFDTArr[fd].ptrfiletable->readoffset+read_size;
+
+    // }
+    // else
+    // {
+    //     strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),isize);
+    //     (UFDTArr[fd].ptrfiletable->readoffset)=(UFDTArr[fd].ptrfiletable->readoffset)+isize;
+
+
+    // }
+    // return isize;
+
+    int read_size = 0;
+
+    if (UFDTArr[fd].ptrfiletable == NULL)
+        return -1;
+
+    if (UFDTArr[fd].ptrfiletable->mode != READ && UFDTArr[fd].ptrfiletable->mode != READ + WRITE)
+        return -2;
+
+    if (UFDTArr[fd].ptrfiletable->ptrinode->permission != READ && UFDTArr[fd].ptrfiletable->ptrinode->permission != READ + WRITE)
+        return -3; // Return -3 for permission check failure
+
+    if (UFDTArr[fd].ptrfiletable->readoffset == UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize)
+        return 0; // Return 0 to indicate end of file
+
+    if (UFDTArr[fd].ptrfiletable->ptrinode->Filetype != REGULAR)
+        return -4;
+
+    read_size = UFDTArr[fd].ptrfiletable->ptrinode->FileActualSize - UFDTArr[fd].ptrfiletable->readoffset;
+
+    if (read_size < isize)
     {
-        strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),read_size);
-        UFDTArr[fd].ptrfiletable->readoffset=UFDTArr[fd].ptrfiletable->readoffset+read_size;
-
+        strncpy(arr, (UFDTArr[fd].ptrfiletable->ptrinode->Buffer) + (UFDTArr[fd].ptrfiletable->readoffset), read_size);
+        UFDTArr[fd].ptrfiletable->readoffset = UFDTArr[fd].ptrfiletable->readoffset + read_size;
     }
     else
     {
-        strncpy(arr,(UFDTArr[fd].ptrfiletable->ptrinode->Buffer)+(UFDTArr[fd].ptrfiletable->readoffset),isize);
-        (UFDTArr[fd].ptrfiletable->readoffset)=(UFDTArr[fd].ptrfiletable->readoffset)+isize;
-
-
+        strncpy(arr, (UFDTArr[fd].ptrfiletable->ptrinode->Buffer) + (UFDTArr[fd].ptrfiletable->readoffset), isize);
+        UFDTArr[fd].ptrfiletable->readoffset = UFDTArr[fd].ptrfiletable->readoffset + isize;
     }
+
     return isize;
 
     
@@ -571,7 +606,7 @@ int stat_file(char *name)
     if(temp==NULL)
     return -2;
 
-     printf("\n-----------Statical Information About file----------\n");
+    printf("\n-----------Statical Information About file----------\n");
     printf("File Name:%s\n",temp->Filename);
     printf("Inode Number:%d\n",temp->InodeNumber);
     printf("FileSize:%d\n",temp->FileSize);
@@ -608,6 +643,7 @@ int main()
     char *ptr=NULL;
     int ret=0,fd=0,count=0;
     char command[4][80],str[80],arr[1024];
+    printf(" .................. WELCOME TO MY FILESYSTEM .................. \n");
     InitialiseSuperBlock();
     CreateDILB();
 
